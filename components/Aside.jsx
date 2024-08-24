@@ -1,7 +1,11 @@
+import { getDictionary } from "@/app/[lang]/dictionaries";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Aside() {
+export default async function Aside({ lang }) {
+  const {
+    home: { trending, newReleases, comingSoon, favorites, watchLater },
+  } = await getDictionary(lang);
   return (
     <aside>
       <ul className="space-y-2">
@@ -16,7 +20,7 @@ export default function Aside() {
               height={24}
               width={24}
             />
-            <span>Trending</span>
+            <span>{trending}</span>
           </Link>
         </li>
         <li>
@@ -30,7 +34,7 @@ export default function Aside() {
               height={24}
               width={24}
             />
-            <span>New Releases</span>
+            <span>{newReleases}</span>
           </Link>
         </li>
         <li>
@@ -44,7 +48,7 @@ export default function Aside() {
               height={24}
               width={24}
             />
-            <span>Coming Soon</span>
+            <span>{comingSoon}</span>
           </Link>
         </li>
         <li>
@@ -58,7 +62,7 @@ export default function Aside() {
               height={24}
               width={24}
             />
-            <span>Favorite</span>
+            <span>{favorites}</span>
           </Link>
         </li>
         <li>
@@ -72,7 +76,7 @@ export default function Aside() {
               height={24}
               width={24}
             />
-            <span>Watch Later</span>
+            <span>{watchLater}</span>
           </Link>
         </li>
       </ul>
