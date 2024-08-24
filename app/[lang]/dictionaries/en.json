@@ -1,0 +1,18 @@
+{
+    "home":{
+        "trending":"Trending",
+        "newReleases":"New Releases",
+        "comingSoon":"Coming Soon",
+        "favorites":"Favorites",
+        "watchLater":"Watch Later",
+        "details" :"Details"
+    },
+  "details":{
+    "releaseDate":"Release Date",
+    "averageVote":"Average Vote",
+    "voteCount ":"Vote Count ",
+    "popularity":"Popularity",
+    "streamHd":"Stream in HD",
+    "download":"Download in HD"
+  }
+}
