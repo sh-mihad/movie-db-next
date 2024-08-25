@@ -2,7 +2,7 @@
 export default function NotFound() {
   return (
     <div>
-        <h1>hello mello</h1>
+        <h1>hello mello not found</h1>
     </div>
   )
 }

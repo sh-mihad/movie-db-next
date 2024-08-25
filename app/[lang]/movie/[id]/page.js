@@ -1,7 +1,65 @@
+import { getMovies } from "@/lib/helper";
+import Image from "next/image";
+import { notFound } from "next/navigation";
+import { getDictionary } from "../../dictionaries";
 
-export default function page({params:{id}}) {
+export default async function page({ params: { id, lang } }) {
+  const allMovies = await getMovies();
+  const {
+    details: {
+      releaseDate,
+      averageVote,
+      voteCount,
+      popularity,
+      streamHd,
+      download,
+    },
+  } = await getDictionary(lang);
+  const getMovieById = allMovies?.movies.find((movie) => movie.id === +id);
+  if (!getMovieById) {
+    notFound();
+  }
 
   return (
-    <div>this is movie id page{id} </div>
-  )
+    <section>
+      <div className="w-full object-cover max-h-[300px] lg:max-h-[500px]">
+        <Image
+          src={getMovieById?.backdrop_path}
+          alt={getMovieById?.title}
+          width={900}
+          height={200}
+        />
+      </div>
+      <div className="grid grid-cols-12 py-12 gap-8">
+        <div className="col-span-2">
+          <Image
+            src={getMovieById.poster_path}
+            alt={getMovieById?.title}
+            width={300}
+            height={400}
+          />
+        </div>
+        <div className="col-span-8">
+          <h2 className="font-bold text-slate-300 text-2xl">
+            {getMovieById?.title}
+          </h2>
+          <p className="my-2 text-slate-400 italic">{getMovieById?.overview}</p>
+          <ul className="text-slate-300 space-y-2 my-8">
+            <li>{releaseDate}: {getMovieById?.release_date}</li>
+            <li>{averageVote} : {getMovieById.vote_average}</li>
+            <li>{voteCount} : {getMovieById.vote_count}</li>
+            <li>{popularity} : {getMovieById.popularity}</li>
+          </ul>
+        </div>
+        <div className="col-span-2 space-y-4">
+          <button className="py-2 w-full bg-primary font-medium text-slate-800 rounded-md">
+           {streamHd}
+          </button>
+          <button className="py-2 w-full bg-primary font-medium text-slate-800 rounded-md">
+            {download}
+          </button>
+        </div>
+      </div>
+    </section>
+  );
 }

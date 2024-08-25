@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function MovieCard({ movie, locale }) {
-    const{title,poster_path} = movie ?? {}
+    const{title,poster_path,id} = movie ?? {}
   return (
     <figure className="p-4 border border-black/10 shadow-sm dark:border-white/10 rounded-xl">
       <Image src={poster_path} alt={poster_path} height={325} width={270} />
@@ -16,9 +16,9 @@ export default function MovieCard({ movie, locale }) {
           <Image src="/star.svg" width={14} height={14} alt="" />
           <Image src="/star.svg" width={14} height={14} alt="" />
         </div>
-        <Link href={"#"} className="bg-primary rounded-lg py-2 px-5 flex items-center justify-center gap-2 text-[#171923] font-semibold text-sm">
+        <Link href={`/movie/${id}`} className="bg-primary rounded-lg py-2 px-5 flex items-center justify-center gap-2 text-[#171923] font-semibold text-sm">
           <Image src="/tag.svg" width={14} height={14} alt="" />
-          <span>Details</span>
+          <span>{locale?.home?.details}</span>
         </Link>
       </figcaption>
     </figure>
