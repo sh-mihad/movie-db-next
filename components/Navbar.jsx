@@ -1,12 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
+import LanguageButton from "./LanguageButton";
 import Logo from "./Logo";
 
-export default function Navbar() {
+export default function Navbar({lang}) {
   return (
     <nav className="container flex items-center justify-between space-x-10 py-6">
       <Logo />
       <ul className="flex items-center space-x-5">
+        <li>
+          <LanguageButton lang={lang}/>
+        </li>
         <li>
           <Link
             className='"bg-primary/20 rounded-lg backdrop-blur-[2px] p-1 inline-block"'

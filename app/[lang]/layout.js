@@ -12,7 +12,7 @@ export default async function RootLayout({ children,params:{lang},modal}) {
     <html lang="en">
       <body>
         <header>
-          <Navbar />
+          <Navbar lang={lang}/>
         </header>
         <main>
           <div className="container grid lg:grid-cols-[218px_1fr] gap-[3.5rem]">
